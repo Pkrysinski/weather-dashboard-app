@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body class="flex-column min-100-vh">
+
+    <header class="p-5 mb-4 border-5 border-bottom border-dark text-center">
+      <h1 class="display-3">Weather Dashboard</h1>
+    </header>
+
+    <main class="container">
+
+        <section class="row justify-space-between">
+
+            <!--This div class is for the left side nav-->
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="card">
+                  <h3 class="card-header">Search for a City:</h3>
+                  <input type="text" placeholder="Enter city here...">
+                  <button type="button" class="button-9">Search</button>
+                  <div class="searchHistory">
+                    <!--TODO: Create list of search history here based on local storage-->
+                  </div>
+                </div>
+            </div>
+    
+            <!-- This div class is for the current and 5-day weather-->
+            <div class="col-12 col-md-8 col-lg-8">
+                <!-- Current Weather card-->
+                <div class="card currentWeather">
+                    <h4>This is where current weather goes</h4>
+                </div>
+                <!-- 5-day Weather card-->
+                <div class="card 5dayWeather">
+                    <h4>This is where 5-day weather goes</h4>
+                </div>            
+    
+            </div>
+        
+    
+        </section>
+    </main>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
