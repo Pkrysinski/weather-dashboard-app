@@ -55,3 +55,8 @@
     justify-content: space-between;
     margin: 20px;
   }
+
+.card{
+    border: 2px solid darkblue;
+    padding: 20px;
+}
