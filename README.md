@@ -18,7 +18,8 @@ GIVEN a weather dashboard with form inputs...
 - - - - -
 WHEN I search for a city
 THEN I am presented with current and future conditions for that city and that city is added to the search history
->TODO: enter comments here
+>Search history now stores in local storage.
+>TODO: Retrieve from local storage, return results to a list.  These must be click-able buttons, so that the content can be passed to the submitWeatherSearch() function to re-search for that city name.
 
 - - - - -
 WHEN I view current weather conditions for that city
@@ -34,3 +35,8 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 >TODO: enter comments here
+
+- - - - -
+TODO...
+>Would like to have auto-fill set up for the search textbox with a few hundred cities.
+>Would like to make textbox take zip codes.

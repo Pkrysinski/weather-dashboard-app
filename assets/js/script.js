@@ -2,15 +2,18 @@ var searchHistoryEL = document.querySelector('#searchHistory');
 var searchCityInputEL = document.querySelector('#searchCity');
 var submitEL = document.querySelector('#submit');
 
+var apiKey = "e486a7d8b0b54203d41c260f6ded5efd";
+var apiSearchURL = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}";
+
 var submitWeatherSearch = function (event) {
     event.preventDefault();
   
     var searchCity = searchCityInputEL.value.trim();
-
-    console.log(searchCity);
   
     if (searchCity) {
       //Call 5-day weather API
+      // First need to pass in the city name and get the lat/long from a first API
+      fetchCoordinates(searchCity);
 
       //Add searchCity to searchHistory
       var searchHistory = readHistoryFromStorage();
@@ -24,6 +27,27 @@ var submitWeatherSearch = function (event) {
     }
   };
 
+function fetchCoordinates(cityName){
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey)
+    .then(function(resp) { return resp.json() }) // Convert data to json
+    .then(function(data) {
+      fetchWeatherData(data[0].lat, data[0].lon);
+    })
+    .catch(function() {
+      // catch any errors
+    });
+};
+
+function fetchWeatherData(lat,lon){
+    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
+    .then(function(resp) { return resp.json() }) // Convert data to json
+    .then(function(data) {
+      console.log(data);
+    })
+    .catch(function() {
+      // catch any errors
+    });
+};
 
 // Reads history from local storage and returns array of search history objects.
 // Returns an empty array ([]) if there aren't any search results.
@@ -45,3 +69,4 @@ function saveHistoryToStorage(searchHistory) {
 
 
 submitEL.addEventListener('click', submitWeatherSearch);
+
