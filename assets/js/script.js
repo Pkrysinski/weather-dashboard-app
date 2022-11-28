@@ -31,21 +31,36 @@ function fetchCoordinates(cityName){
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-      fetchWeatherData(data[0].lat, data[0].lon);
+    fetchCurrentWeatherData(data[0].lat, data[0].lon);
+    fetch5dayWeatherData(data[0].lat, data[0].lon);
     })
     .catch(function() {
       // catch any errors
     });
 };
 
-function fetchWeatherData(lat,lon){
-    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
+function fetchCurrentWeatherData(lat,lon){
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
+      console.log("fetchCurrentWeatherData");
       console.log(data);
     })
     .catch(function() {
       // catch any errors
+    });
+};
+
+//Need function to get 5-day weather data too
+function fetch5dayWeatherData(lat,lon){
+    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
+    .then(function(resp) { return resp.json() }) // Convert data to json
+    .then(function(data) {
+        console.log("fetch5dayWeatherData");
+        console.log(data);
+    })
+    .catch(function() {
+        // catch any errors
     });
 };
 
