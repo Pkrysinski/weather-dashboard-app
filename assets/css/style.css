@@ -9,6 +9,11 @@
     padding: 2.5%;
   }
 
+.weatherImg {
+  height: 2rem;
+  width: 2rem;
+}
+
 
 /* CSS */
 .searchBtn {

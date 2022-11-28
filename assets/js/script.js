@@ -46,16 +46,37 @@ function fetchCoordinates(cityName){
 };
 
 function fetchCurrentWeatherData(lat,lon){
-    fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
+    fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
       console.log("fetchCurrentWeatherData");
       console.log(data);
       // TODO - Need to display the cityName and today's date, with an icon of the current weather, plus below that the Temp, Wind, and Humidity.
 
+
+
+      // Build cityName and today's date, with an icon of the current weather (call it "Today's Weather Headline")
       var todaysWeatherEL = document.createElement('h4');
-      todaysWeatherEL.textContent = searchCity + " (" + displayDay() + ") " + "./assets/icons/" + data.weather[0].icon + ".png";
+      var imgIconEL = document.createElement('img');
+      imgIconEL.src = "./assets/icons/" + data.weather[0].icon + ".png";
+      imgIconEL.classList.add("weatherImg");
+      todaysWeatherEL.textContent = searchCity + " (" + displayDay() + ") ";      
+      todaysWeatherEL.appendChild(imgIconEL)
+
+      //Append Today's Weather Headline
       currentWeatherEl.append(todaysWeatherEL);
+
+      var currentTempEL = document.createElement('h4');
+      var currentWindEL = document.createElement('h4');
+      var currentHumidityEL = document.createElement('h4');
+
+      currentTempEL.textContent = "Temp: " + data.main.temp + "°F";
+      currentWindEL.textContent = "Wind: " + data.wind.speed + "mph";
+      currentHumidityEL.textContent = "Humidity: " + data.main.humidity + "%";
+
+      currentWeatherEl.appendChild(currentTempEL);
+      currentTempEL.appendChild(currentWindEL);
+      currentWindEL.appendChild(currentHumidityEL);
     })
     .catch(function() {
       // catch any errors
@@ -64,7 +85,7 @@ function fetchCurrentWeatherData(lat,lon){
 
 //Need function to get 5-day weather data too
 function fetchFutureWeatherData(lat,lon){
-    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
         console.log("fetchFutureWeatherData");
