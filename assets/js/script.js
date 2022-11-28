@@ -1,14 +1,22 @@
 var searchHistoryEL = document.querySelector('#searchHistory');
 var searchCityInputEL = document.querySelector('#searchCity');
 var submitEL = document.querySelector('#submit');
+var currentWeatherEl = document.querySelector('#currentWeather');
+var futureWeatherEl = document.querySelector('#futureWeather');
 
 var apiKey = "e486a7d8b0b54203d41c260f6ded5efd";
 var apiSearchURL = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}";
+var searchCity;
+
+function displayDay() {
+    var today = dayjs().format('MMMM D YYYY');
+    return today;
+};
 
 var submitWeatherSearch = function (event) {
     event.preventDefault();
   
-    var searchCity = searchCityInputEL.value.trim();
+    searchCity = searchCityInputEL.value.trim();
   
     if (searchCity) {
       //Call 5-day weather API
@@ -19,8 +27,6 @@ var submitWeatherSearch = function (event) {
       var searchHistory = readHistoryFromStorage();
       searchHistory.push(searchCity);
       saveHistoryToStorage(searchHistory);
-  
-      //Render results from API to screen
 
     } else {
       window.alert('Please search for a city!');
@@ -32,7 +38,7 @@ function fetchCoordinates(cityName){
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
     fetchCurrentWeatherData(data[0].lat, data[0].lon);
-    fetch5dayWeatherData(data[0].lat, data[0].lon);
+    fetchFutureWeatherData(data[0].lat, data[0].lon);
     })
     .catch(function() {
       // catch any errors
@@ -45,6 +51,11 @@ function fetchCurrentWeatherData(lat,lon){
     .then(function(data) {
       console.log("fetchCurrentWeatherData");
       console.log(data);
+      // TODO - Need to display the cityName and today's date, with an icon of the current weather, plus below that the Temp, Wind, and Humidity.
+
+      var todaysWeatherEL = document.createElement('h4');
+      todaysWeatherEL.textContent = searchCity + " (" + displayDay() + ") " + "./assets/icons/" + data.weather[0].icon + ".png";
+      currentWeatherEl.append(todaysWeatherEL);
     })
     .catch(function() {
       // catch any errors
@@ -52,12 +63,13 @@ function fetchCurrentWeatherData(lat,lon){
 };
 
 //Need function to get 5-day weather data too
-function fetch5dayWeatherData(lat,lon){
+function fetchFutureWeatherData(lat,lon){
     fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-        console.log("fetch5dayWeatherData");
+        console.log("fetchFutureWeatherData");
         console.log(data);
+      // TODO - Need to display the 5-day forecast in cards with Date, Weather Icon, Temp, Wind and Humidity.       
     })
     .catch(function() {
         // catch any errors
@@ -80,8 +92,6 @@ function readHistoryFromStorage() {
 function saveHistoryToStorage(searchHistory) {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 };
-
-
 
 submitEL.addEventListener('click', submitWeatherSearch);
 
