@@ -19,7 +19,6 @@ var submitWeatherSearch = function (event) {
     searchCity = searchCityInputEL.value.trim();
   
     if (searchCity) {
-      //Call 5-day weather API
       // First need to pass in the city name and get the lat/long from a first API
       fetchCoordinates(searchCity);
 
@@ -40,60 +39,120 @@ function fetchCoordinates(cityName){
     fetchCurrentWeatherData(data[0].lat, data[0].lon);
     fetchFutureWeatherData(data[0].lat, data[0].lon);
     })
-    .catch(function() {
+    .catch(function(err) {
       // catch any errors
-    });
+      console.log(err);
+  });
 };
 
 function fetchCurrentWeatherData(lat,lon){
     fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-      console.log("fetchCurrentWeatherData");
-      console.log(data);
-      // TODO - Need to display the cityName and today's date, with an icon of the current weather, plus below that the Temp, Wind, and Humidity.
-
-
+      
+      // QUESTION - Need to clear out any old results before building new ones
+      // BELOW DOESN'T WORK...
+      // currentWeatherEl.removeChild();
+      // NEITHER DOES BELOW...
+      // todaysWeatherEL.remove();
+      // currentTempEL.remove();
+      // currentWindEL.remove();
+      // currentHumidityEL.remove();
 
       // Build cityName and today's date, with an icon of the current weather (call it "Today's Weather Headline")
       var todaysWeatherEL = document.createElement('h4');
       var imgIconEL = document.createElement('img');
+
       imgIconEL.src = "./assets/icons/" + data.weather[0].icon + ".png";
       imgIconEL.classList.add("weatherImg");
       todaysWeatherEL.textContent = searchCity + " (" + displayDay() + ") ";      
-      todaysWeatherEL.appendChild(imgIconEL)
-
-      //Append Today's Weather Headline
+      todaysWeatherEL.appendChild(imgIconEL);
       currentWeatherEl.append(todaysWeatherEL);
 
       var currentTempEL = document.createElement('h4');
       var currentWindEL = document.createElement('h4');
       var currentHumidityEL = document.createElement('h4');
 
-      currentTempEL.textContent = "Temp: " + data.main.temp + "°F";
-      currentWindEL.textContent = "Wind: " + data.wind.speed + "mph";
-      currentHumidityEL.textContent = "Humidity: " + data.main.humidity + "%";
+      currentTempEL.textContent = "Temp: " + data.main.temp + " °F";
+      currentWindEL.textContent = "Wind: " + data.wind.speed + " mph";
+      currentHumidityEL.textContent = "Humidity: " + data.main.humidity + " %";
 
       currentWeatherEl.appendChild(currentTempEL);
       currentTempEL.appendChild(currentWindEL);
       currentWindEL.appendChild(currentHumidityEL);
     })
-    .catch(function() {
+    .catch(function(err) {
       // catch any errors
-    });
+      console.log(err);
+  });
 };
 
 //Need function to get 5-day weather data too
 function fetchFutureWeatherData(lat,lon){
-    fetch("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial&cnt=120")
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
         console.log("fetchFutureWeatherData");
         console.log(data);
-      // TODO - Need to display the 5-day forecast in cards with Date, Weather Icon, Temp, Wind and Humidity.       
+
+      // Since data is returned every 3 hours, in order to loop through 24 to get the next day's weather, we need to increment i by 8.  I also want to start at index 4 (which is 12:00pm), because the user probably wants to see what the weather's like closer to the middle of the day, not midnight...
+      // TODO - Add styling to turn these into horizontal cards
+      for (let i = 4; i < 120; i += 8){
+
+        // var dailyWeatherDivEL = document.createElement('div');
+        // dailyWeatherDivEL.classList.add("card");
+
+        // var dailyWeatherEL = document.createElement('h4');
+        // var imgIconEL = document.createElement('img');
+
+        // imgIconEL.src = "./assets/icons/" + data.list[i].weather[0].icon + ".png";
+        // imgIconEL.classList.add("weatherImg");
+        // dailyWeatherEL.textContent = data.list[i].dt_txt;
+        // dailyWeatherEL.appendChild(imgIconEL);
+        // futureWeatherEl.append(dailyWeatherEL);
+
+        // var dailyTempEL = document.createElement('h4');
+        // var dailyWindEL = document.createElement('h4');
+        // var dailyHumidityEL = document.createElement('h4');
+        // dailyTempEL.textContent = "Temp: " + data.list[i].main.temp + " °F";
+        // dailyWindEL.textContent = "Wind: " + data.list[i].wind.speed + " mph";
+        // dailyHumidityEL.textContent = "Humidity: " + data.list[i].main.humidity + " %";
+
+        // // futureWeatherEl.appendChild(dailyWeatherDivEL);
+        // // dailyWeatherDivEL.appendChild(futureWeatherEl);
+
+        // futureWeatherEl.appendChild(dailyTempEL);
+        // dailyTempEL.appendChild(dailyWindEL);
+        // dailyWindEL.appendChild(dailyHumidityEL);
+
+        var dailyWeatherDivEL = document.createElement('div');
+        dailyWeatherDivEL.classList.add("card");
+
+        var dailyWeatherEL = document.createElement('h4');
+        var imgIconEL = document.createElement('img');
+
+        imgIconEL.src = "./assets/icons/" + data.list[i].weather[0].icon + ".png";
+        imgIconEL.classList.add("weatherImg");
+        dailyWeatherEL.textContent = data.list[i].dt_txt;
+        dailyWeatherEL.append(imgIconEL);
+
+        var dailyTempEL = document.createElement('h4');
+        var dailyWindEL = document.createElement('h4');
+        var dailyHumidityEL = document.createElement('h4');
+        dailyTempEL.textContent = "Temp: " + data.list[i].main.temp + " °F";
+        dailyWindEL.textContent = "Wind: " + data.list[i].wind.speed + " mph";
+        dailyHumidityEL.textContent = "Humidity: " + data.list[i].main.humidity + " %";
+
+        // QUESTION - For some reason, this is nesting each H4 inside the previous H4...
+        futureWeatherEl.append(dailyWeatherDivEL);
+        dailyWeatherDivEL.append(dailyWeatherEL,dailyTempEL,dailyWindEL,dailyHumidityEL);
+
+    };
+      
     })
-    .catch(function() {
+    .catch(function(err) {
         // catch any errors
+        console.log(err);
     });
 };
 
@@ -108,11 +167,20 @@ function readHistoryFromStorage() {
     }
     return searchHistory;
 };
+
+
   
 // Takes an search result and saves to local storage.
 function saveHistoryToStorage(searchHistory) {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 };
 
+// This function is being called below and will run when the page loads.
+function init() {
+  searchCity = "Salt Lake City";
+  fetchCoordinates(searchCity);
+};
+
 submitEL.addEventListener('click', submitWeatherSearch);
 
+init();

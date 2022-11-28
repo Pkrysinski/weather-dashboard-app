@@ -24,12 +24,12 @@ THEN I am presented with current and future conditions for that city and that ci
 - - - - -
 WHEN I view current weather conditions for that city
 THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
->TODO: enter comments here
+>Dynamically creating content in the currentWeather div with the city name, today's date, with a weather icon next to that.  Then below appending children of temperature, wind, and humidity.
 
 - - - - -
 WHEN I view future weather conditions for that city
 THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
->TODO: enter comments here
+>Am able to dynamically create HTML elements for the future weather (5 days) to get these results.  The API returns weather in 3-hour increments, so in order to show day-by-day, you have to make sure you loop through every 8 results to get the 24-hour day as a whole.
 
 - - - - -
 WHEN I click on a city in the search history
