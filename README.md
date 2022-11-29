@@ -38,5 +38,8 @@ THEN I am again presented with current and future conditions for that city
 
 - - - - -
 TODO...
+NEEDS-
+>Add some styling via CSS and make the page look a little nicer!
+WANTS-
 >Would like to have auto-fill set up for the search textbox with a few hundred cities.
 >Would like to make textbox take zip codes.

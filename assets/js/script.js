@@ -2,7 +2,7 @@ var searchHistoryEL = document.querySelector('#searchHistory');
 var searchCityInputEL = document.querySelector('#searchCity');
 var submitEL = document.querySelector('#submit');
 var currentWeatherEl = document.querySelector('#currentWeather');
-var futureWeatherEl = document.querySelector('#futureWeather');
+var futureWeatherEL = document.querySelector('#futureWeather');
 
 var apiKey = "e486a7d8b0b54203d41c260f6ded5efd";
 var apiSearchURL = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}";
@@ -99,32 +99,6 @@ function fetchFutureWeatherData(lat,lon){
       // TODO - Add styling to turn these into horizontal cards
       for (let i = 4; i < 120; i += 8){
 
-        // var dailyWeatherDivEL = document.createElement('div');
-        // dailyWeatherDivEL.classList.add("card");
-
-        // var dailyWeatherEL = document.createElement('h4');
-        // var imgIconEL = document.createElement('img');
-
-        // imgIconEL.src = "./assets/icons/" + data.list[i].weather[0].icon + ".png";
-        // imgIconEL.classList.add("weatherImg");
-        // dailyWeatherEL.textContent = data.list[i].dt_txt;
-        // dailyWeatherEL.appendChild(imgIconEL);
-        // futureWeatherEl.append(dailyWeatherEL);
-
-        // var dailyTempEL = document.createElement('h4');
-        // var dailyWindEL = document.createElement('h4');
-        // var dailyHumidityEL = document.createElement('h4');
-        // dailyTempEL.textContent = "Temp: " + data.list[i].main.temp + " °F";
-        // dailyWindEL.textContent = "Wind: " + data.list[i].wind.speed + " mph";
-        // dailyHumidityEL.textContent = "Humidity: " + data.list[i].main.humidity + " %";
-
-        // // futureWeatherEl.appendChild(dailyWeatherDivEL);
-        // // dailyWeatherDivEL.appendChild(futureWeatherEl);
-
-        // futureWeatherEl.appendChild(dailyTempEL);
-        // dailyTempEL.appendChild(dailyWindEL);
-        // dailyWindEL.appendChild(dailyHumidityEL);
-
         var dailyWeatherDivEL = document.createElement('div');
         dailyWeatherDivEL.classList.add("card");
 
@@ -143,8 +117,8 @@ function fetchFutureWeatherData(lat,lon){
         dailyWindEL.textContent = "Wind: " + data.list[i].wind.speed + " mph";
         dailyHumidityEL.textContent = "Humidity: " + data.list[i].main.humidity + " %";
 
-        // QUESTION - For some reason, this is nesting each H4 inside the previous H4...
-        futureWeatherEl.append(dailyWeatherDivEL);
+
+        futureWeatherEL.append(dailyWeatherDivEL);
         dailyWeatherDivEL.append(dailyWeatherEL,dailyTempEL,dailyWindEL,dailyHumidityEL);
 
     };
