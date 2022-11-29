@@ -3,6 +3,7 @@ var searchCityInputEL = document.querySelector('#searchCity');
 var submitEL = document.querySelector('#submit');
 var currentWeatherEl = document.querySelector('#currentWeather');
 var futureWeatherEL = document.querySelector('#futureWeather');
+var listEL = document.createElement("ol");
 
 var apiKey = "e486a7d8b0b54203d41c260f6ded5efd";
 var apiSearchURL = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}";
@@ -92,8 +93,6 @@ function fetchFutureWeatherData(lat,lon){
     fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial&cnt=120")
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-        console.log("fetchFutureWeatherData");
-        console.log(data);
 
       // Since data is returned every 3 hours, in order to loop through 24 to get the next day's weather, we need to increment i by 8.  I also want to start at index 4 (which is 12:00pm), because the user probably wants to see what the weather's like closer to the middle of the day, not midnight...
       // TODO - Add styling to turn these into horizontal cards
@@ -139,6 +138,25 @@ function readHistoryFromStorage() {
     } else {
         searchHistory = [];
     }
+
+    // Need to display searchHistory to screen so users can click and search based on that city
+    // Only want to return last 10 results.  Otherwise this list is gonna get hella long.
+    if (searchHistory.length < 10) {
+      varLength = searchHistory.length;
+    } else {
+      varLength = 10;
+    };
+
+    for (var i = 0; i < varLength; i++){
+
+      var liHistoryResult = document.createElement("li");
+      liHistoryResult.textContent = searchHistory[i];
+    
+      searchHistoryEL.appendChild(liHistoryResult);
+
+      // console.log(searchHistory[i]);
+  }    
+
     return searchHistory;
 };
 
@@ -153,6 +171,7 @@ function saveHistoryToStorage(searchHistory) {
 function init() {
   searchCity = "Salt Lake City";
   fetchCoordinates(searchCity);
+  readHistoryFromStorage();
 };
 
 submitEL.addEventListener('click', submitWeatherSearch);
