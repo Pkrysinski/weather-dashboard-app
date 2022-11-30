@@ -18,20 +18,16 @@
       <h1 class="display-3">Weather Dashboard</h1>
     </header>
 
-    <!-- <main class="container"> -->
-    <main class="row">
 
+    <main class="row">
         <!--This div class is for the left side nav-->
         <div class="col-12 col-md-3">
             <div class="card">
-                <h3 class="card-header">Search for a City:</h3>
+                <h1 class="card-header">Search for a City:</h1>
                 <input id="searchCity" type="text" placeholder="Enter city here...">
                 <button id="submit" class="searchBtn">Search</button>
                 <div id="searchHistory">
-                <!--TODO: Create list of search history here based on local storage-->
-                <ul class="list-group list-group-flush">
-                  
-                </ul>
+                  <ul class="list-group list-group-flush"></ul>
                 </div>
             </div>
         </div>
@@ -39,20 +35,17 @@
         <!-- This div class is for the current and 5-day weather-->
         <div class="col-12 col-md-9">
             <!-- Current Weather card-->
-            <div class="card" id="currentWeather">
-                <h2>Today's Forecast...</h2>
+            <div class="card">
+                <h1>Today's Forecast...</h1>
+                <div id="currentWeather"></div>
             </div>
             <!-- 5-day Weather card-->
-            <div class="card" id="futureWeather">
-                <h2>5-Day Forecast...</h2>
+            <div class="card">
+                <h1>5-Day Forecast...</h1>
+                <div id="futureWeather"></div>
             </div>            
-
         </div>
-        
     </main>
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 

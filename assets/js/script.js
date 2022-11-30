@@ -37,6 +37,8 @@ function fetchCoordinates(cityName){
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
+    currentWeatherEl.innerHTML = '';
+    futureWeatherEL.innerHTML = '';
     fetchCurrentWeatherData(data[0].lat, data[0].lon);
     fetchFutureWeatherData(data[0].lat, data[0].lon);
     })
@@ -51,10 +53,10 @@ function fetchCurrentWeatherData(lat,lon){
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
       
-      // QUESTION - Need to clear out any old results before building new ones
-      // BELOW DOESN'T WORK...
+      //    QUESTION - Need to clear out any old results before building new ones
+      //    BELOW DOESN'T WORK...
       // currentWeatherEl.removeChild();
-      // NEITHER DOES BELOW...
+      //    NEITHER DOES BELOW...
       // todaysWeatherEL.remove();
       // currentTempEL.remove();
       // currentWindEL.remove();
@@ -132,12 +134,14 @@ function fetchFutureWeatherData(lat,lon){
 // Reads history from local storage and returns array of search history objects.
 // Returns an empty array ([]) if there aren't any search results.
 function readHistoryFromStorage() {
+    searchHistoryEL.innerHTML = '';
+
     var searchHistory = localStorage.getItem('searchHistory');
     if (searchHistory) {
         searchHistory = JSON.parse(searchHistory);
     } else {
         searchHistory = [];
-    }
+    };
 
     // Need to display searchHistory to screen so users can click and search based on that city
     // Only want to return last 10 results.  Otherwise this list is gonna get hella long.
@@ -147,19 +151,29 @@ function readHistoryFromStorage() {
       varLength = 10;
     };
 
+    // And finally, render results to screen as a list (might changes these to buttons)
     for (var i = 0; i < varLength; i++){
-
       var liHistoryResult = document.createElement("li");
       liHistoryResult.textContent = searchHistory[i];
-    
+      liHistoryResult.classList.add("historyResults");
       searchHistoryEL.appendChild(liHistoryResult);
+    };
 
-      // console.log(searchHistory[i]);
-  }    
+    // After list is created, need to make them clickable.
+    // QUESTION - this is working, but appended elements are stacking.  How do we get rid of this?
+    var li = document.getElementsByTagName("li");
+    for(var i = 0;i<li.length;i++){
+        li[i].addEventListener("click", function(event) {
+          event.preventDefault();
+          searchCity = this.innerText;
+          fetchCoordinates(searchCity);
+          readHistoryFromStorage();
+        });
+
+    };
 
     return searchHistory;
 };
-
 
   
 // Takes an search result and saves to local storage.

@@ -34,13 +34,14 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 - - - - -
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
->TODO: enter comments here
+>I've finally been able to turn the history results into clickable list items that re-search based on the item clicked.
 
 - - - - -
 TODO...
 NEEDS-
 >Add some styling via CSS and make the page look a little nicer!
->Make searchHistoryEL elements clickable links that re-search based on that city.
+>Try to make the 5-day weather cards stack horizontally, not vertically.
+>Make search history return values unique, and all upper-case.
 WANTS-
 >Would like to have auto-fill set up for the search textbox with a few hundred cities.
 >Would like to make textbox take zip codes.
