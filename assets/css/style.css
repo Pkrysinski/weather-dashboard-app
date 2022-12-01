@@ -97,6 +97,7 @@ ul li {
 #futureWeather {
   margin: 0 auto;
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 };

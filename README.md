@@ -6,9 +6,8 @@ The purpose of this weather dashboard app is to display to the user current weat
 
 ## Link to Deployed Application
 
-TODO: link to deployed application here
+https://pkrysinski.github.io/weather-dashboard-app/
 
-TODO: screenshot of github repo here (replace below with screenshot taken and saved to ./images folder)
 ![Alt text](https://github.com/Pkrysinski/weather-dashboard-app/blob/main/assets/images/github-screenshot.PNG)
 
 ## Acceptence Criteria Notes
