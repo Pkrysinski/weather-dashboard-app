@@ -34,7 +34,7 @@ var submitWeatherSearch = function (event) {
   };
 
 function fetchCoordinates(cityName){
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey)
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
     currentWeatherEl.innerHTML = '';
