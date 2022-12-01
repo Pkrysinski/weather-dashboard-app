@@ -9,7 +9,8 @@ The purpose of this weather dashboard app is to display to the user current weat
 TODO: link to deployed application here
 
 TODO: screenshot of github repo here (replace below with screenshot taken and saved to ./images folder)
-![Alt text](https://github.com/Pkrysinski/workday-scheduler-app/blob/main/assets/images/github-screenshot.PNG)
+![Alt text](https://github.com/Pkrysinski/
+weather-dashboard-app/blob/main/assets/images/github-screenshot.PNG)
 
 ## Acceptence Criteria Notes
 
@@ -19,7 +20,7 @@ GIVEN a weather dashboard with form inputs...
 WHEN I search for a city
 THEN I am presented with current and future conditions for that city and that city is added to the search history
 >Search history now stores in local storage.
->TODO: Retrieve from local storage, return results to a list.  These must be click-able buttons, so that the content can be passed to the submitWeatherSearch() function to re-search for that city name.
+>History now retrieves from local storage, return results to a list.  These is click-able with list elements, so that the content can be passed to the submitWeatherSearch() function to re-search for that city name and essentially refresh the page.
 
 - - - - -
 WHEN I view current weather conditions for that city
@@ -40,8 +41,8 @@ THEN I am again presented with current and future conditions for that city
 TODO...
 NEEDS-
 >Add some styling via CSS and make the page look a little nicer!
->Try to make the 5-day weather cards stack horizontally, not vertically.
 >Make search history return values unique, and all upper-case.
 WANTS-
 >Would like to have auto-fill set up for the search textbox with a few hundred cities.
 >Would like to make textbox take zip codes.
+>Try to get rid of "TypeError".

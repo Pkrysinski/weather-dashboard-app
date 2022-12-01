@@ -52,15 +52,6 @@ function fetchCurrentWeatherData(lat,lon){
     fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-      
-      //    QUESTION - Need to clear out any old results before building new ones
-      //    BELOW DOESN'T WORK...
-      // currentWeatherEl.removeChild();
-      //    NEITHER DOES BELOW...
-      // todaysWeatherEL.remove();
-      // currentTempEL.remove();
-      // currentWindEL.remove();
-      // currentHumidityEL.remove();
 
       // Build cityName and today's date, with an icon of the current weather (call it "Today's Weather Headline")
       var todaysWeatherEL = document.createElement('h4');
@@ -96,9 +87,7 @@ function fetchFutureWeatherData(lat,lon){
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
 
-      // Since data is returned every 3 hours, in order to loop through 24 to get the next day's weather, we need to increment i by 8.  I also want to start at index 4 (which is 12:00pm), because the user probably wants to see what the weather's like closer to the middle of the day, not midnight...
-      // TODO - Add styling to turn these into horizontal cards
-      for (let i = 4; i < 120; i += 8){
+      for (let i = 0; i < 120; i += 8){
 
         var dailyWeatherDivEL = document.createElement('div');
         dailyWeatherDivEL.classList.add("card");
@@ -121,6 +110,7 @@ function fetchFutureWeatherData(lat,lon){
 
         futureWeatherEL.append(dailyWeatherDivEL);
         dailyWeatherDivEL.append(dailyWeatherEL,dailyTempEL,dailyWindEL,dailyHumidityEL);
+        dailyWeatherDivEL.classList.add("column");
 
     };
       

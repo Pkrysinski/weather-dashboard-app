@@ -31,18 +31,13 @@
     height: 44px;
     line-height: 1.15;
     margin: 12px 0 0;
-    outline: none;
     overflow: hidden;
     padding: 0 25px;
     position: relative;
     text-align: center;
-    text-transform: none;
     transform: translateZ(0);
     transition: all .2s,box-shadow .08s ease-in;
-    user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
-    width: 100%;
 }
 
 .button-9:disabled {
@@ -61,6 +56,14 @@
     margin: 20px;
   }
 
+  .column {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 20px;
+  }  
+
 .card{
     border: 2px solid darkblue;
     padding: 20px;
@@ -77,3 +80,23 @@ ul li {
   text-decoration: none;
   padding: 5px;
 }
+
+.historyResults {
+  list-style: none;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 5px;
+  text-align: center;
+}
+
+.historyResults:hover {
+  cursor: pointer;
+}
+
+#futureWeather {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+};
