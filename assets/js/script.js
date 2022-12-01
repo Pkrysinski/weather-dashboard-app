@@ -97,7 +97,7 @@ function fetchFutureWeatherData(lat,lon){
 
         imgIconEL.src = "./assets/icons/" + data.list[i].weather[0].icon + ".png";
         imgIconEL.classList.add("weatherImg");
-        dailyWeatherEL.textContent = data.list[i].dt_txt;
+        dailyWeatherEL.textContent = dayjs(data.list[i].dt_txt).format('MMMM D YYYY');
         dailyWeatherEL.append(imgIconEL);
 
         var dailyTempEL = document.createElement('h4');
@@ -106,7 +106,6 @@ function fetchFutureWeatherData(lat,lon){
         dailyTempEL.textContent = "Temp: " + data.list[i].main.temp + " °F";
         dailyWindEL.textContent = "Wind: " + data.list[i].wind.speed + " mph";
         dailyHumidityEL.textContent = "Humidity: " + data.list[i].main.humidity + " %";
-
 
         futureWeatherEL.append(dailyWeatherDivEL);
         dailyWeatherDivEL.append(dailyWeatherEL,dailyTempEL,dailyWindEL,dailyHumidityEL);
