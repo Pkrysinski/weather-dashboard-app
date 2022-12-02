@@ -27,6 +27,7 @@ var submitWeatherSearch = function (event) {
       var searchHistory = readHistoryFromStorage();
       searchHistory.push(searchCity);
       saveHistoryToStorage(searchHistory);
+      readHistoryFromStorage();
 
     } else {
       window.alert('Please search for a city!');
