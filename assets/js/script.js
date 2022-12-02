@@ -132,8 +132,8 @@ function readHistoryFromStorage() {
         searchHistory = [];
     };
 
-    // Need to display searchHistory to screen so users can click and search based on that city
-    // Only want to return last 10 results.  Otherwise this list is gonna get hella long.
+    // Need to display searchHistory to screen so users can click and search based on that city.
+    // Only want to return last 10 results.  Otherwise this list is gonna get long.
     if (searchHistory.length < 10) {
       varLength = searchHistory.length;
     } else {
@@ -149,7 +149,6 @@ function readHistoryFromStorage() {
     };
 
     // After list is created, need to make them clickable.
-    // QUESTION - this is working, but appended elements are stacking.  How do we get rid of this?
     var li = document.getElementsByTagName("li");
     for(var i = 0;i<li.length;i++){
         li[i].addEventListener("click", function(event) {

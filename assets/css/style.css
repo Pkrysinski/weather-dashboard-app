@@ -1,3 +1,14 @@
+/* CARDS */
+.card {
+  margin: 0 0 20px 0;
+  border: 3px solid var(--dark);
+  border-radius: var(--border-radius);
+}
+
+.card-body {
+  padding: 2.5%;
+}
+
 /* Make the icons pretty much as small as the text of the card they're in */
 .weatherImg {
     height: 2rem;
@@ -38,25 +49,37 @@
     margin: 20px;
 };
 
+.column {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+}  
+
 /* Card styling */
 .card{
     border: 2px solid darkblue;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;    
-    margin: 0 0 20px 0;
+    margin: 20px;
     border-radius: var(--border-radius);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    
 };
 
 /* Remove the bullets from the list, add a little styling */
-ul li {
+ul {
   list-style: none;
-  display: block;
-  width: 100%;
-  text-decoration: none;
-  padding: 5px;
-};
+}
+
+ul li {
+list-style: none;
+display: block;
+width: 100%;
+text-decoration: none;
+padding: 5px;
+}
 
 /* Make the history search results look pretty */
 .historyResults {
@@ -79,5 +102,6 @@ ul li {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: auto;
   gap: 20px;
 };
