@@ -34,15 +34,3 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 >I've finally been able to turn the history results into clickable list items that re-search based on the item clicked.
-
-- - - - -
-TODO...
-NEEDS-
->Add some styling via CSS and make the page look a little nicer!
->Make search history return values unique, and all upper-case.
->Add comments to CSS file.
-WANTS-
->Would like to have auto-fill set up for the search textbox with a few hundred cities.
->Would like to make textbox take zip codes.
->Try to get rid of "TypeError".
->Go back and make it properly responsive.  I know there was no acceptance criteria requirement asking for the page to be responsive, but at this point I want every challenge to encapsulate the fundamentals of challenges past, and responsive design is no exception.

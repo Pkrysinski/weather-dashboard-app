@@ -109,7 +109,7 @@ function fetchFutureWeatherData(lat,lon){
 
         futureWeatherEL.append(dailyWeatherDivEL);
         dailyWeatherDivEL.append(dailyWeatherEL,dailyTempEL,dailyWindEL,dailyHumidityEL);
-        dailyWeatherDivEL.classList.add("column");
+        dailyWeatherDivEL.classList.add("FiveDayCard");
 
     };
       

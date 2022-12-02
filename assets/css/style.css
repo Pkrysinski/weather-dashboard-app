@@ -1,21 +1,10 @@
-/* CARDS */
-.card {
-    margin: 0 0 20px 0;
-    border: 3px solid var(--dark);
-    border-radius: var(--border-radius);
-  }
-
-.card-body {
-    padding: 2.5%;
-}
-
+/* Make the icons pretty much as small as the text of the card they're in */
 .weatherImg {
     height: 2rem;
     width: 2rem;
-}
+};
 
-
-/* CSS */
+/* Fun CSS I found for the search button */
 .searchBtn {
     appearance: button;
     backface-visibility: hidden;
@@ -38,51 +27,38 @@
     transform: translateZ(0);
     transition: all .2s,box-shadow .08s ease-in;
     touch-action: manipulation;
-}
+};
 
-.button-9:disabled {
-    cursor: default;
-}
-
-.button-9:focus {
-    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
-}
-
+/* Row flex setup */
 .row {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     margin: 20px;
-  }
+};
 
-.column {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 20px;
-  }  
-
+/* Card styling */
 .card{
     border: 2px solid darkblue;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;    
-}
+    margin: 0 0 20px 0;
+    border-radius: var(--border-radius);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    
+};
 
-ul {
-    list-style: none;
-}
-
+/* Remove the bullets from the list, add a little styling */
 ul li {
   list-style: none;
   display: block;
   width: 100%;
   text-decoration: none;
   padding: 5px;
-}
+};
 
+/* Make the history search results look pretty */
 .historyResults {
   list-style: none;
   display: block;
@@ -90,12 +66,14 @@ ul li {
   text-decoration: none;
   padding: 5px;
   text-align: center;
-}
+};
 
+/* Make the mouse a pointer on hover of search history */
 .historyResults:hover {
   cursor: pointer;
-}
+};
 
+/* Turning 5-day weather into grid system to try out */
 #futureWeather {
   margin: 0 auto;
   display: grid;
